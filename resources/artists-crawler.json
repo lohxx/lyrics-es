@@ -1,0 +1,15 @@
+{
+    "Kanye West": {
+        "songs": [
+            {"album": "College Dropout", "song_url": "https://www.azlyrics.com/lyrics/kanyewest/twowords.html"},
+            {"album": "College Dropout", "song_url": "https://www.azlyrics.com/lyrics/kanyewest/wedontcare.html"},
+            {"album": "College Dropout", "song_url": "https://www.azlyrics.com/lyrics/kanyewest/schoolspiritskit2.html"},
+            {"album": "College Dropout", "song_url": "https://www.azlyrics.com/lyrics/kanyewest/intro.html"},
+            {"album": "College Dropout", "song_url": "https://www.azlyrics.com/lyrics/kanyewest/getemhigh.html"},
+            {"album": "College Dropout", "song_url": "https://www.azlyrics.com/lyrics/kanyewest/lastcall.html"}
+        ],
+        "ignore": [
+           
+        ]
+    }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "crawler-es",
+  "version": "1.0.0",
+  "description": "Get lyrics and index on elasticsearch",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lohanna",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.10",
+    "es7": "npm:@elastic/elasticsearch@^7.17.0"
+  }
+}
