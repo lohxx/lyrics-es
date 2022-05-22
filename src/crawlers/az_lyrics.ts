@@ -4,27 +4,39 @@ import * as cheerio from 'cheerio';
 import { BaseCrawler } from './base_crawler';
 
 class Selector {
-    selectors: string[];
+    values: string[];
+    private _cur = -1;
     constructor(selector: string[]) {
-        this.selectors = selector;
+        this.values = selector;
     }
 
-    toString() {
-        return this.selectors
+    next(): string | boolean {
+        this._cur += 1;
+        if (this._cur >= this.values.length) {
+           return false;
+        }
+        return this.values[this._cur];
+    }
+
+    reset(): void {
+        this._cur = -1;
     }
 }
 
-const mainSelectors = {
-    'guests':  new Selector(['body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > span']),
-    'title': new Selector(['body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > div.ringtone+b',
+const AZLyricsSelectors = {
+    'guests':  new Selector([
+        'body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > span']),
+    'title': new Selector([
+        'body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > div.ringtone+b',
         'body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > b']),
-    'lyrics': new Selector(['body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > div.ringtone + b + br + br + div', 
-    'body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > div.ringtone + b + br + span.feat + br+br+div'])
+    'lyrics': new Selector([
+        'body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > div.ringtone + b + br + br + div', 
+        'body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > div.ringtone + b + br + span.feat + br+br+div'])
 }
 
 export class AZLyrics extends BaseCrawler {
     constructor(selectors = {}) {
-        super('https://www.azlyrics.com/lyrics', {...mainSelectors, ...selectors});
+        super('https://www.azlyrics.com/lyrics', {...AZLyricsSelectors, ...selectors});
         this.page = {};
     }
 
@@ -38,10 +50,14 @@ export class AZLyrics extends BaseCrawler {
         const data: {[index: string]:any} = {}
         const keys: string[] = Object.keys(this.selectors);
         for (const key of keys) {
-            data[key] = this.page(this.selectors[key].toString()).text();
-            if (!data[key]) {
-                data[key] = this.page(this.selectors[key].alternativeSelector).text()
+            let selector = this.selectors[key].next();
+            while (selector) {
+                data[key] = this.page(selector).text();
+                if (data[key]) { break };
+                selector = this.selectors[key].next();
             }
+
+            this.selectors[key].reset();
         }
         return data;
     }

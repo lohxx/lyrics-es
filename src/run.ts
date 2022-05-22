@@ -21,7 +21,7 @@ async function readSongsFile() {
       for(let artist of singers) {
         data[artist]['artist'] = artist;
         const songs = await downloadPages(data[artist], azLyrics);
-        console.log(songs);
+        saveLyrics(songs);
       }
     } catch (err) {
       console.log('error: ', err);
@@ -39,15 +39,12 @@ async function downloadPages(data: DownloadInfo, azLyrics: crawlers.AZLyrics) {
     return songs;
 }
 
-async function saveLyric(page: any) {
-  //let [song, data] = page['value'];
-  //const parsedSong = new Song(song.data, data);
-  //const filename = `${data['artist'].replace(' ', '')}__${parsedSong.title.replace(' ', '')}`;
-  //console.log(filename, parsedSong.title);
-
-  //await fs.writeFile(
-  //  `resources/${filename}.json`,
-  //  JSON.stringify({...data, title: parsedSong.title, guests: parsedSong.guests, lyrics: parsedSong.lyrics}));
+async function saveLyrics(songs: any[]) {
+  const rex = /[^a-z]/gmi;
+  for (let song of songs) {
+    const filename = `${song.artist.replace(rex, '')}__${song.title.replace(rex, '')}`;
+    await fsPromises.writeFile(`src/resources/${filename}.json`, JSON.stringify(song));
+  }
 }
 
 readSongsFile()
