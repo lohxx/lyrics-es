@@ -1,0 +1,46 @@
+{
+  "Kanye West": {
+    "songs": [
+      {
+        "album": "College Dropout",
+        "song_url": "kanyewest/wedontcare.html",
+        "seen": true
+      },
+      {
+        "album": "College Dropout",
+        "song_url": "kanyewest/schoolspiritskit2.html",
+        "seen": true
+      },
+      {
+        "album": "College Dropout",
+        "song_url": "kanyewest/twowords.html",
+        "seen": true
+      },
+      {
+        "album": "College Dropout",
+        "song_url": "kanyewest/intro.html",
+        "seen": true
+      },
+      {
+        "album": "College Dropout",
+        "song_url": "kanyewest/getemhigh.html",
+        "seen": true
+      },
+      {
+        "album": "College Dropout",
+        "song_url": "kanyewest/lastcall.html",
+        "seen": true
+      }
+    ],
+    "ignore": []
+  },
+  "Kendrick Lamar": {
+    "songs": [
+      {
+        "song_url": "kendricklamar/silenthill.html",
+        "album": "Mr. Morale & The Big Steppers",
+        "seen": true
+      }
+    ]
+  }
+}
