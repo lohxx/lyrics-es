@@ -4,4 +4,4 @@ COPY . .
 
 RUN npm install .
 
-ENTRYPOINT ["node", "crawler.js"]
+ENTRYPOINT ["node", "src/crawler.js"]

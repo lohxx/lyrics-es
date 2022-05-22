@@ -4,7 +4,7 @@
   "description": "Get lyrics and index on elasticsearch",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "extract": "node build/crawler.js"
   },
   "author": "lohanna",
   "license": "ISC",
@@ -12,5 +12,11 @@
     "axios": "^0.27.2",
     "cheerio": "^1.0.0-rc.10",
     "es7": "npm:@elastic/elasticsearch@^7.17.0"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^0.22.31",
+    "@types/node": "^17.0.35",
+    "husky": "^8.0.0",
+    "sucrase": "^3.21.0"
   }
 }
