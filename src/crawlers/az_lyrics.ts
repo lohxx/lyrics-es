@@ -25,7 +25,8 @@ class Selector {
 
 const AZLyricsSelectors = {
     'guests':  new Selector([
-        'body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > span']),
+        'body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > span',
+        'body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > div.lyricsh > h2 > b']),
     'title': new Selector([
         'body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > div.ringtone+b',
         'body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > b']),

@@ -30,6 +30,11 @@
         "album": "College Dropout",
         "song_url": "kanyewest/lastcall.html",
         "seen": true
+      },
+      {
+        "album": "Donda",
+        "song_url": "kanyewest/heavenandhell.html",
+        "seen": true
       }
     ],
     "ignore": []
@@ -39,6 +44,47 @@
       {
         "song_url": "kendricklamar/silenthill.html",
         "album": "Mr. Morale & The Big Steppers",
+        "seen": true
+      },
+      {
+        "song_url": "kendricklamar/diehard.html",
+        "album": "Mr. Morale & The Big Steppers",
+        "seen": true
+      }
+    ]
+  },
+  "MC Poze": {
+    "songs": [
+      {
+        "song_url": "filiperet/mesintoabencoado.html",
+        "album": null,
+        "seen": true
+      }
+    ]
+  },
+  "Baco Exu do Blues": {
+    "songs": [
+      {
+        "song_url": "bacoexudoblues/tudovaidarcerto.html",
+        "album": "Não Tem Bacanal Na Quarentena",
+        "seen": true
+      }
+    ]
+  },
+  "Scorpions": {
+    "songs": [
+      {
+        "song_url": "scorpions/stilllovingyou.html",
+        "album": "Love At First Sting",
+        "seen": true
+      }
+    ]
+  },
+  "Travis Scott": {
+    "songs": [
+      {
+        "song_url": "travisscott/yosemite.html",
+        "album": "ASTROWORLD",
         "seen": true
       }
     ]

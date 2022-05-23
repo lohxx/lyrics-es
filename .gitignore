@@ -1,5 +1,6 @@
 src/resources/*
 !src/resources/artists-crawler.json
+!src/resources/lyrics-mapping.json
 node_modules/
 .husky
 build/
