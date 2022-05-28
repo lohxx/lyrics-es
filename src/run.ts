@@ -1,6 +1,6 @@
 import { promises as fsPromises } from 'fs';
-
-import * as crawlers from './crawlers/az_lyrics';
+import * as az_lyrics from './crawlers/az_lyrics';
+import * as crawlers from './crawlers/base_crawler';
 
 interface SongInfo {
   album: string;
@@ -17,7 +17,7 @@ async function readSongsFile() {
     const path = './src/resources/artists-crawler.json';
     try {
       const data = JSON.parse(await fsPromises.readFile(path, { encoding: 'utf8' }));
-      const azLyrics = new crawlers.AZLyrics();
+      const azLyrics = new az_lyrics.AZLyrics();
       const singers = Object.keys(data);
 
       for(let artist of singers) {
@@ -35,15 +35,15 @@ async function readSongsFile() {
 }
 
 
-async function downloadPages(data: DownloadInfo, azLyrics: crawlers.AZLyrics) {
+async function downloadPages(data: DownloadInfo, azLyrics: crawlers.BaseCrawler) {
     const songs = [];    
-      for(let song of data['songs']) {
+      for(let song of data.songs) {
         if (song.seen) {
           continue
         }
         const page = await azLyrics.downloadPage(song.song_url);
         const extractedData = await page.extractData();
-        song['seen'] = true;
+        song.seen = true;
         songs.push({...extractedData, album: song.album, artist: data['artist']});
     }
     return songs;

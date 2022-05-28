@@ -88,5 +88,14 @@
         "seen": true
       }
     ]
+  },
+  "Djonga": {
+    "songs": [
+      {
+        "song_url": "djonga/voz.html",
+        "album": "Ladrão",
+        "seen": true
+      }
+    ]
   }
 }
