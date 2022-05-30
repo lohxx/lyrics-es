@@ -1,6 +1,3 @@
-import axios from "axios";
-import * as cheerio from 'cheerio';
-
 import { BaseCrawler } from './base_crawler';
 
 class Selector {
@@ -39,12 +36,6 @@ export class AZLyrics extends BaseCrawler {
     constructor(selectors = {}) {
         super('https://www.azlyrics.com/lyrics', {...AZLyricsSelectors, ...selectors});
         this.page = {};
-    }
-
-    async downloadPage(path: string): Promise<this> {
-        const page = await axios.get(`${this.site}/${path}`);
-        this.page = cheerio.load(page.data);
-        return this;
     }
 
     async extractData(): Promise<object> {

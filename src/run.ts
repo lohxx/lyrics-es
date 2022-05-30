@@ -13,11 +13,29 @@ interface DownloadInfo {
   artist: string;
 }
 
-async function readSongsFile() {
-    const path = './src/resources/artists-crawler.json';
+// O tipo de crawler deve conter todas as informacoes necessarias de como baixar
+// onde salvar e como salvar
+const crawlersType = {
+  'azLyrics': {
+    crawler: az_lyrics.AZLyrics,
+    path: './src/resources/artists-crawler.json',
+    outputPath: './src/resources/'
+  }
+};
+
+
+async function readSongsFile(crawlerType: string = 'azLyrics' , filePath: string) {
+    const crawlersKeys = Object.keys(crawlerType);
+    if (crawlersKeys.indexOf(crawlerType) == -1) {
+      console.log('Não foi possivel encontrar o crawler especificado')
+      return
+    }
+
+    const crawler = crawlersType[crawlerType];
+
     try {
-      const data = JSON.parse(await fsPromises.readFile(path, { encoding: 'utf8' }));
-      const azLyrics = new az_lyrics.AZLyrics();
+      const data = JSON.parse(await fsPromises.readFile(filePath, { encoding: 'utf8' }));
+      const azLyrics = new crawler.crawler();
       const singers = Object.keys(data);
 
       for(let artist of singers) {
@@ -27,7 +45,8 @@ async function readSongsFile() {
         delete data[artist]['artist'];
       }
 
-      fsPromises.writeFile(path, JSON.stringify(data, null, 2));
+      fsPromises.writeFile(
+        crawler.outputPath, JSON.stringify(data, null, 2));
 
     } catch (err) {
       console.log('error: ', err);
@@ -49,12 +68,10 @@ async function downloadPages(data: DownloadInfo, azLyrics: crawlers.BaseCrawler)
     return songs;
 }
 
-async function saveLyrics(songs: any[]) {
+async function saveLyrics(songs: any[], outputPath: string) {
   const rex = /[^a-z]/gmi;
   for (let song of songs) {
     const filename = `${song.artist.replace(rex, '')}__${song.title.replace(rex, '')}`;
-    await fsPromises.writeFile(`src/resources/${filename}.json`, JSON.stringify(song, null, 2));
+    await fsPromises.writeFile(`${outputPath}${filename}.json`, JSON.stringify(song, null, 2));
   }
 }
-
-readSongsFile()

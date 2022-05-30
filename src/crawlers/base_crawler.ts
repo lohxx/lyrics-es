@@ -1,3 +1,4 @@
+import axios from "axios";
 import * as cheerio from 'cheerio';
 
 
@@ -12,6 +13,11 @@ export abstract class BaseCrawler {
         this.page = null;
     }
 
-    abstract downloadPage(path: string): Promise<this>;
+    async downloadPage(path: string): Promise<this> {
+        const page = await axios.get(`${this.site}/${path}`);
+        this.page = cheerio.load(page.data);
+        return this;
+    }
+
     abstract extractData(): Promise<any>;
 }
