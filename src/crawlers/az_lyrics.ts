@@ -3,7 +3,7 @@ import { BaseCrawler } from './base_crawler';
 class Selector {
     values: string[];
     private _cur = -1;
-    constructor(selector: string[]) {
+    constructor(...selector: string[]) {
         this.values = selector;
     }
 
@@ -21,15 +21,15 @@ class Selector {
 }
 
 const AZLyricsSelectors = {
-    'guests':  new Selector([
+    'guests':  new Selector(
         'body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > span',
-        'body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > div.lyricsh > h2 > b']),
-    'title': new Selector([
+        'body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > div.lyricsh > h2 > b'),
+    'title': new Selector(
         'body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > div.ringtone+b',
-        'body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > b']),
-    'lyrics': new Selector([
+        'body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > b'),
+    'lyrics': new Selector(
         'body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > div.ringtone + b + br + br + div', 
-        'body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > div.ringtone + b + br + span.feat + br+br+div'])
+        'body > div.container.main-page > div > div.col-xs-12.col-lg-8.text-center > div.ringtone + b + br + span.feat + br+br+div')
 }
 
 export class AZLyrics extends BaseCrawler {

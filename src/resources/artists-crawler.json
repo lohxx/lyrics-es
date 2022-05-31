@@ -97,5 +97,14 @@
         "seen": true
       }
     ]
+  },
+  "Tems": {
+    "songs": [
+      {
+        "song_url": "tems/freemind.html",
+        "album": "For Broken Ears",
+        "seen": true
+      }
+    ]
   }
 }
