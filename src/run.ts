@@ -28,7 +28,7 @@ const crawlerOptions: CrawlerOptions = {
 };
 
 
-async function readSongsFile(crawlerType: string = 'azLyrics') {
+export async function extractSongs(crawlerType: string = 'azLyrics') {
     const crawlersKeys = Object.keys(crawlerOptions);
     if (crawlersKeys.indexOf(crawlerType) == -1) {
       console.log('Não foi possivel encontrar o crawler especificado');
@@ -58,8 +58,9 @@ async function readSongsFile(crawlerType: string = 'azLyrics') {
 }
 
 
-async function downloadPages(data: DownloadInfo, azLyrics: crawlers.BaseCrawler): Promise<object[]> {
-    const songs = [];    
+export async function downloadPages(data: DownloadInfo, azLyrics: crawlers.BaseCrawler): Promise<object[]> {
+    const songs = [];
+    console.log(data)    
       for(let song of data.songs) {
         if (song.seen) {
           continue
@@ -81,4 +82,4 @@ async function saveLyrics(songs: any[], outputPath: string): Promise<void> {
 }
 
 
-readSongsFile('azLyrics');
+//extractSongs('azLyrics');

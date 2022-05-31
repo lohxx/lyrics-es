@@ -45,7 +45,10 @@ export class AZLyrics extends BaseCrawler {
             let selector = this.selectors[key].next();
             while (selector) {
                 data[key] = this.page(selector).text();
-                if (data[key]) { break };
+                if (data[key]) {
+                    data[key] = data[key].trim();
+                    break;
+                 };
                 selector = this.selectors[key].next();
             }
 
