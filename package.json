@@ -5,7 +5,7 @@
   "main": "run.js",
   "scripts": {
     "test": "jest",
-    "extract": "node build/run.js extract",
+    "extract": "node build/cli.js extract",
     "build": "cd /Users/lohanna/projetos/crawler-es/src && tsc"
   },
   "author": "lohanna",
