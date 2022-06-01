@@ -2,23 +2,6 @@ import { promises as fsPromises } from 'fs';
 import * as az_lyrics from './crawlers/az_lyrics';
 import * as crawlers from './crawlers/base_crawler';
 
-type CrawlerOptions = { [key: string]: {
-  crawler: any,
-  path: string,
-  outputPath: string
-} }; 
-
-interface SongInfo {
-  album: string;
-  song_url: string;
-  seen: boolean;
-}
-
-interface DownloadInfo {
-  songs: SongInfo[];
-  artist: string;
-}
-
 const crawlerOptions: CrawlerOptions = {
   'azLyrics': {
     crawler: az_lyrics.AZLyrics,
@@ -26,7 +9,6 @@ const crawlerOptions: CrawlerOptions = {
     outputPath: './src/resources/'
   }
 };
-
 
 export async function extractSongs(crawlerType: string = 'azLyrics') {
     const crawlersKeys = Object.keys(crawlerOptions);
@@ -80,6 +62,3 @@ async function saveLyrics(songs: any[], outputPath: string): Promise<void> {
     await fsPromises.writeFile(`${outputPath}${filename}.json`, JSON.stringify(song, null, 2));
   }
 }
-
-
-//extractSongs('azLyrics');
