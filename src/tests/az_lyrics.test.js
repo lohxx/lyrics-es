@@ -11,7 +11,7 @@ const downloadPageMock = jest
       return this
   });
 
-it('Assert', async () => {
+it('Assert lyrics extraction', async () => {
     const azLyrics = new az_lyrics.AZLyrics().downloadPage();
     const song = await azLyrics.extractData();
 
