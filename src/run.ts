@@ -1,6 +1,23 @@
 import { promises as fsPromises } from 'fs';
+import { Command } from 'commander';
+
 import * as az_lyrics from './crawlers/az_lyrics';
 import * as crawlers from './crawlers/base_crawler';
+
+const program = new Command();
+
+program
+  .name('crawler-lyrics')
+  .description('CLI to some crawler utilities')
+  .version('0.8.0');
+
+program.command('extract')
+  .description('Downloads the lyrics from configured site.')
+  .argument('<site>', 'Site where the pages will be downloaded')
+  .action((site, options) => {
+    extractSongs(site);
+  });
+
 
 const crawlerOptions: CrawlerOptions = {
   'azLyrics': {
@@ -39,7 +56,6 @@ export async function extractSongs(crawlerType: string = 'azLyrics') {
     }
 }
 
-
 export async function downloadPages(data: DownloadInfo, azLyrics: crawlers.BaseCrawler): Promise<object[]> {
     const songs = [];
     console.log(data)    
@@ -62,3 +78,6 @@ async function saveLyrics(songs: any[], outputPath: string): Promise<void> {
     await fsPromises.writeFile(`${outputPath}${filename}.json`, JSON.stringify(song, null, 2));
   }
 }
+
+
+program.parse();

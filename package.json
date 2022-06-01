@@ -5,7 +5,7 @@
   "main": "run.js",
   "scripts": {
     "test": "jest",
-    "extract": "node build/run.js",
+    "extract": "node build/run.js extract",
     "build": "cd /Users/lohanna/projetos/crawler-es/src && tsc"
   },
   "author": "lohanna",
@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "cheerio": "^1.0.0-rc.10",
+    "commander": "^9.3.0",
     "es7": "npm:@elastic/elasticsearch@^7.17.0"
   },
   "devDependencies": {
